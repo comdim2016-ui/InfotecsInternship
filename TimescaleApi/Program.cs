@@ -4,17 +4,17 @@ using TimescaleApi.Services; // Подключили пространство и
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Подключаем поддержку стандартных контроллеров
+// Подключаем поддержку стандартных контроллеров
 builder.Services.AddControllers();
 
-// 2. Регистрируем сервис обработки файлов 
+// Регистрируем сервис обработки файлов 
 builder.Services.AddScoped<FileProcessingService>(); 
 
-// 3. Регистрируем контекст базы данных и связываем его с PostgreSQL
+// Регистрируем контекст базы данных и связываем его с PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
-// 4. Включаем генерацию Swagger 
+// Включаем генерацию Swagger 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
